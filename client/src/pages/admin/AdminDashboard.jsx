@@ -13,7 +13,7 @@ function Field({ label, value, onChange, placeholder = "", type = "text" }) {
       <label className="text-xs text-slate-300/80">{label}</label>
       <input
         type={type}
-        className="mt-2 w-full rounded-2xl border border-slate-800/70 bg-slate-950/40 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-sky-400/40"
+        className="mt-2 w-full rounded-lg border border-white/10 bg-slate-950/45 px-4 py-3 text-sm outline-none transition focus:border-teal-300/50 focus:ring-2 focus:ring-teal-300/20"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
@@ -27,11 +27,11 @@ function Modal({ open, title, children, onClose }) {
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/60" onClick={onClose} />
-     <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto glass rounded-3xl p-6">
+     <div className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-lg border border-white/10 bg-slate-950/90 p-6 shadow-soft backdrop-blur-2xl">
         <div className="flex items-center justify-between">
           <div className="text-base font-semibold">{title}</div>
           <button
-            className="rounded-xl border border-slate-800/70 px-3 py-2 text-sm"
+            className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm transition hover:border-teal-300/50 hover:bg-teal-300/10"
             onClick={onClose}
           >
             Close
@@ -187,20 +187,20 @@ export default function AdminDashboard() {
       <div className="mt-2 flex gap-3">
         <button
           onClick={() => setTab("projects")}
-          className={`rounded-2xl border px-4 py-2 text-sm ${
+          className={`rounded-full border px-4 py-2 text-sm transition ${
             tab === "projects"
-              ? "border-sky-400/40 bg-sky-500/10 text-sky-200"
-              : "border-slate-800/70 bg-slate-900/20 text-slate-200/80"
+              ? "border-teal-300/40 bg-teal-300/10 text-teal-100"
+              : "border-white/10 bg-white/[0.04] text-slate-200/80 hover:border-teal-300/40"
           }`}
         >
           Projects
         </button>
         <button
           onClick={() => setTab("messages")}
-          className={`rounded-2xl border px-4 py-2 text-sm ${
+          className={`rounded-full border px-4 py-2 text-sm transition ${
             tab === "messages"
-              ? "border-sky-400/40 bg-sky-500/10 text-sky-200"
-              : "border-slate-800/70 bg-slate-900/20 text-slate-200/80"
+              ? "border-teal-300/40 bg-teal-300/10 text-teal-100"
+              : "border-white/10 bg-white/[0.04] text-slate-200/80 hover:border-teal-300/40"
           }`}
         >
           Messages
@@ -220,19 +220,19 @@ export default function AdminDashboard() {
 
           <div className="mt-4 grid gap-4">
             {projects.map((p) => (
-              <div key={p._id} className="glass rounded-3xl p-5">
+              <div key={p._id} className="rounded-lg border border-white/10 bg-white/[0.055] p-5 shadow-soft backdrop-blur-2xl">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div>
                     <div className="text-base font-semibold">{p.title}</div>
                     <div className="mt-1 text-xs text-slate-400">
-                      Featured: {p.featured ? "Yes" : "No"} • Order: {p.order ?? 0}
+                      Featured: {p.featured ? "Yes" : "No"} - Order: {p.order ?? 0}
                     </div>
                     <div className="mt-2 text-sm text-slate-300/80 line-clamp-2">
                       {p.description}
                     </div>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {(p.tech || []).slice(0, 6).map((t) => (
-                        <span key={t} className="rounded-full border border-slate-700/60 bg-slate-900/30 px-3 py-1 text-[11px] text-slate-200/85">
+                        <span key={t} className="rounded-full border border-white/10 bg-slate-950/45 px-3 py-1 text-[11px] text-slate-200/85">
                           {t}
                         </span>
                       ))}
@@ -261,12 +261,12 @@ export default function AdminDashboard() {
 
           <div className="mt-4 grid gap-4">
             {messages.map((m) => (
-              <div key={m._id} className="glass rounded-3xl p-5">
+              <div key={m._id} className="rounded-lg border border-white/10 bg-white/[0.055] p-5 shadow-soft backdrop-blur-2xl">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div>
                     <div className="text-base font-semibold">{m.name} <span className="text-xs text-slate-400">({m.email})</span></div>
                     <div className="mt-1 text-xs text-slate-400">
-                      {new Date(m.createdAt).toLocaleString()} • {m.subject || "No subject"}
+                      {new Date(m.createdAt).toLocaleString()} - {m.subject || "No subject"}
                     </div>
                     <div className="mt-3 text-sm text-slate-300/80 whitespace-pre-wrap">{m.message}</div>
                   </div>
@@ -293,7 +293,7 @@ export default function AdminDashboard() {
           <div>
             <label className="text-xs text-slate-300/80">Description</label>
             <textarea
-              className="mt-2 min-h-[120px] w-full rounded-2xl border border-slate-800/70 bg-slate-950/40 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-sky-400/40"
+              className="mt-2 min-h-[120px] w-full rounded-lg border border-white/10 bg-slate-950/45 px-4 py-3 text-sm outline-none transition focus:border-teal-300/50 focus:ring-2 focus:ring-teal-300/20"
               value={form.description}
               onChange={(e) => setForm((s) => ({ ...s, description: e.target.value }))}
               placeholder="Short project summary..."

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  margin: 0;
+  padding: 0;
+  
+}
 :root {
   color-scheme: dark;
 }
@@ -12,34 +17,4 @@ html {
 
 ::selection {
   background: rgba(56, 189, 248, 0.25);
-}
-
-.gradient-bg {
-  background: radial-gradient(900px circle at 20% 10%, rgba(59,130,246,0.18), transparent 55%),
-              radial-gradient(700px circle at 70% 20%, rgba(56,189,248,0.16), transparent 60%),
-              radial-gradient(900px circle at 50% 80%, rgba(99,102,241,0.12), transparent 55%),
-              linear-gradient(180deg, #020617 0%, #020617 60%, #020617 100%);
-}
-
-.glass {
-  background: rgba(2, 6, 23, 0.55);
-  border: 1px solid rgba(148, 163, 184, 0.12);
-  backdrop-filter: blur(12px);
-}
-
-.link-underline {
-  position: relative;
-}
-.link-underline::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  height: 2px;
-  width: 0;
-  background: linear-gradient(90deg, #38bdf8, #6366f1, #3b82f6);
-  transition: width 220ms ease;
-}
-.link-underline:hover::after {
-  width: 100%;
 }
