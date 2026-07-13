@@ -14,7 +14,7 @@ const services = [
   {
     icon: Layout,
     title: "Frontend Development",
-    desc: "Responsive React interfaces, reusable components, routing, state handling, and fast user flows.",
+    desc: "Responsive React and Next.js interfaces, reusable components, routing, state handling, and fast user flows.",
     accent: "from-cyan-300 to-sky-500",
   },
   {
@@ -25,7 +25,7 @@ const services = [
   },
   {
     icon: Database,
-    title: "MongoDB & Mongoose",
+    title: "MongoDB, MySQL & Mongoose",
     desc: "Practical schemas, relationships, indexes, and data models that keep apps easy to scale.",
     accent: "from-green-300 to-lime-500",
   },

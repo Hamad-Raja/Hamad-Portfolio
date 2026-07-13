@@ -5,9 +5,11 @@ import { Braces, Database, Layers3, Rocket, ShieldCheck } from "lucide-react";
 
 const skills = [
   { name: "React", level: 92, tone: "from-cyan-300 to-sky-500" },
+  { name: "Next.js", level: 90, tone: "from-zinc-100 to-slate-400" },
   { name: "Node.js", level: 88, tone: "from-emerald-300 to-teal-500" },
   { name: "Express", level: 86, tone: "from-slate-200 to-slate-400" },
   { name: "MongoDB", level: 84, tone: "from-green-300 to-lime-500" },
+  { name: "MySQL", level: 82, tone: "from-blue-300 to-cyan-500" },
   { name: "Tailwind CSS", level: 90, tone: "from-sky-300 to-cyan-400" },
   { name: "JWT Auth", level: 82, tone: "from-rose-300 to-pink-500" },
 ];
@@ -15,12 +17,12 @@ const skills = [
 const strengths = [
   { icon: Layers3, title: "Clean UI Systems", text: "Reusable components, responsive layouts, and polished interaction states." },
   { icon: Braces, title: "Readable Code", text: "Project structure and logic that stays easy to maintain as features grow." },
-  { icon: Database, title: "Database Flow", text: "MongoDB models and API contracts designed for real app usage." },
+  { icon: Database, title: "Database Flow", text: "MongoDB and MySQL models with API contracts designed for real app usage." },
   { icon: Rocket, title: "Shipping Mindset", text: "Focused on features that look good, work smoothly, and feel complete." },
 ];
 
 const stack = [
-  "React", "Node.js", "Express", "MongoDB", "Tailwind", "Mongoose",
+  "React", "Next.js", "Node.js", "Express", "MongoDB", "MySQL", "Tailwind", "Mongoose",
   "REST APIs", "JWT", "Git", "Deployment", "Responsive UI", "Admin Panels",
 ];
 
@@ -59,9 +61,9 @@ export default function About() {
             flows, responsive design, and APIs that stay simple to work with.
           </p>
           <p className="mt-4 break-words text-sm leading-7 text-slate-300/85">
-            I work across frontend and backend - from React components, routing,
-            and layouts to Express APIs, database modeling, authentication, and
-            admin dashboards.
+            I work across frontend and backend - from React and Next.js
+            components, routing, and layouts to Express APIs, MongoDB and MySQL
+            modeling, authentication, and admin dashboards.
           </p>
 
           <div className="mt-7 grid gap-3 sm:grid-cols-2">

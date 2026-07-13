@@ -55,7 +55,7 @@ export default function AdminDashboard() {
   const [form, setForm] = useState({
     title: "",
     description: "",
-    tech: "React,Node,Express,MongoDB,Tailwind",
+    tech: "React,Next.js,Node,Express,MongoDB,MySQL,Tailwind",
     imageUrl: "",
     liveUrl: "",
     githubUrl: "",
@@ -98,7 +98,7 @@ export default function AdminDashboard() {
     setForm({
       title: "",
       description: "",
-      tech: "React,Node,Express,MongoDB,Tailwind",
+      tech: "React,Next.js,Node,Express,MongoDB,MySQL,Tailwind",
       imageUrl: "",
       liveUrl: "",
       githubUrl: "",
@@ -303,7 +303,7 @@ export default function AdminDashboard() {
             label="Tech (comma separated)"
             value={form.tech}
             onChange={(v) => setForm((s) => ({ ...s, tech: v }))}
-            placeholder="React, Node, Express, MongoDB"
+            placeholder="React, Next.js, Node, Express, MongoDB, MySQL"
           />
           <Field label="Image URL" value={form.imageUrl} onChange={(v) => setForm((s) => ({ ...s, imageUrl: v }))} placeholder="https://..." />
           <Field label="Live URL" value={form.liveUrl} onChange={(v) => setForm((s) => ({ ...s, liveUrl: v }))} placeholder="https://..." />

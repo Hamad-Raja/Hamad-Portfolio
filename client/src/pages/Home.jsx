@@ -15,9 +15,11 @@ import Services from "./Services.jsx";
 
 const stack = [
   { name: "React", color: "from-cyan-300 to-blue-400" },
+  { name: "Next.js", color: "from-zinc-100 to-slate-400" },
   { name: "Node.js", color: "from-emerald-300 to-teal-400" },
   { name: "Express", color: "from-slate-200 to-slate-400" },
   { name: "MongoDB", color: "from-green-300 to-emerald-500" },
+  { name: "MySQL", color: "from-blue-300 to-cyan-500" },
   { name: "Tailwind CSS", color: "from-sky-300 to-cyan-400" },
   { name: "REST APIs", color: "from-amber-300 to-orange-400" },
   { name: "JWT Auth", color: "from-rose-300 to-pink-400" },
@@ -84,9 +86,9 @@ function StackShowcase() {
         <div className="text-xs font-bold uppercase tracking-[0.22em] text-teal-200">
           Tech Stack
         </div>
-        <div className="hidden text-xs text-slate-400 sm:block">
+        {/* <div className="hidden text-xs text-slate-400 sm:block">
           MERN focused, production ready
-        </div>
+        </div> */}
       </div>
       <TechMarquee />
       <TechMarquee reverse />
@@ -170,9 +172,9 @@ export default function Home() {
             </h1>
 
             <p className="mt-6 max-w-2xl animate-reveal break-words text-base leading-8 text-slate-300 [animation-delay:160ms]">
-              I build modern MERN applications with polished React interfaces,
-              reliable APIs, MongoDB data models, and clean deployment-ready
-              structure.
+              I build modern full-stack applications with polished React and
+              Next.js interfaces, reliable APIs, MongoDB and MySQL data models,
+              and clean deployment-ready structure.
             </p>
 
             <div className="mt-8 flex animate-reveal flex-wrap items-center gap-3 [animation-delay:240ms]">
