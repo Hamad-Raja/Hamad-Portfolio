@@ -102,7 +102,7 @@ export default function Projects() {
       <SectionTitle
         eyebrow="Projects"
         title="My Work"
-        subtitle="Project cards are still powered by MongoDB. Add or update real projects from the admin dashboard and this page will keep the new look."
+        subtitle="See how we turn ideas into meaningful and impactful digital experiences."
       />
 
       {loading ? (
