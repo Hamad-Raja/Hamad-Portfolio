@@ -241,7 +241,7 @@ export default function Home() {
         <SectionTitle
           eyebrow="Featured Work"
           title="Projects that show real MERN skills"
-          subtitle="Selected work powered by the existing MongoDB project API. Update projects anytime from the admin dashboard."
+          // subtitle="Selected work powered by the existing MongoDB project API. Update projects anytime from the admin dashboard."
         />
 
         {featured.length ? (
