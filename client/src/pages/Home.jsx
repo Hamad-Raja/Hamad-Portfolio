@@ -43,7 +43,7 @@ function Stat({ value, label, delay }) {
     <Surface
       className={`group p-3 transition duration-300 hover:-translate-y-1 hover:border-teal-300/40 hover:bg-teal-300/10 animate-reveal sm:p-4 ${delay}`}
     >
-      <div className="bg-gradient-to-r from-teal-200 via-sky-200 to-amber-200 bg-clip-text text-xl font-black text-transparent sm:text-2xl">
+      <div className="bg-gradient-to-r from-teal-200 via-sky-200 to-amber-200 bg-clip-text text-xl font-extrabold text-transparent sm:text-2xl">
         {value}
       </div>
       <div className="mt-1 text-[11px] font-medium leading-tight text-slate-300/80 sm:text-xs">
@@ -164,8 +164,10 @@ export default function Home() {
               <Sparkles size={14} /> Available for MERN work
             </div>
 
-            <h1 className="mt-5 max-w-full animate-reveal break-words text-4xl font-black leading-[1.03] text-white [animation-delay:80ms] sm:text-5xl xl:text-6xl">
-              Hammad Zahoor
+            <h1 className="mt-5 max-w-full animate-reveal break-words text-4xl font-extrabold leading-[1.03] text-white [animation-delay:80ms] sm:text-5xl xl:text-6xl">
+              <span className="block bg-[linear-gradient(110deg,#f8fafc,#ccfbf1_45%,#7dd3fc_78%)] bg-clip-text text-transparent drop-shadow-[0_18px_55px_rgba(45,212,191,0.16)]">
+                Hammad Zahoor
+              </span>
               <span className="mt-2 block bg-[linear-gradient(110deg,#ccfbf1,#38bdf8,#fbbf24,#ccfbf1)] bg-[length:220%_100%] bg-clip-text text-transparent animate-shimmer">
                 Full-Stack Developer
               </span>

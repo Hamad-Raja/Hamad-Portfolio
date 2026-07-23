@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "../components/Container.jsx";
 import SectionTitle from "../components/SectionTitle.jsx";
+import PanelHeading from "../components/PanelHeading.jsx";
 import { Braces, Database, Layers3, Rocket, ShieldCheck } from "lucide-react";
 
 const skills = [
@@ -49,9 +50,7 @@ export default function About() {
               <div className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-gradient-to-br from-teal-300 to-sky-400 text-slate-950">
                 <ShieldCheck size={21} />
               </div>
-              <h3 className="mt-3 break-words text-2xl font-black leading-tight text-white">
-                My focus
-              </h3>
+              <PanelHeading className="mt-3">My focus</PanelHeading>
             </div>
           </div>
 
@@ -91,9 +90,7 @@ export default function About() {
         <div className="grid min-w-0 gap-6">
           <div className="min-w-0 overflow-hidden rounded-lg border border-white/10 bg-white/[0.055] p-5 shadow-soft backdrop-blur-2xl animate-reveal [animation-delay:120ms] sm:p-7">
             <div className="flex min-w-0 flex-wrap items-center justify-between gap-3">
-              <h3 className="min-w-0 break-words text-xl font-black leading-tight text-white">
-                Animated Stack
-              </h3>
+              <PanelHeading size="sm">Animated Stack</PanelHeading>
               <span className="rounded-full border border-teal-300/20 bg-teal-300/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-teal-100">
                 MERN
               </span>

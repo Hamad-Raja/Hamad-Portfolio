@@ -32,7 +32,9 @@ function ProjectCard({ p, index }) {
       </div>
 
       <div className="p-6">
-        <h3 className="text-xl font-black text-white">{p.title}</h3>
+        <h3 className="text-xl font-extrabold text-white transition group-hover:text-teal-100">
+          {p.title}
+        </h3>
         <p className="mt-3 text-sm leading-7 text-slate-300/80">{p.description}</p>
 
         <div className="mt-5 flex flex-wrap gap-2">

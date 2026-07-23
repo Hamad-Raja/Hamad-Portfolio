@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Container from "../components/Container.jsx";
 import SectionTitle from "../components/SectionTitle.jsx";
+import PanelHeading from "../components/PanelHeading.jsx";
 import Button from "../components/Button.jsx";
 import { api } from "../lib/api.js";
 import { Mail, MessageSquare, Send, Sparkles } from "lucide-react";
@@ -47,7 +48,7 @@ export default function Contact() {
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-teal-300 to-sky-400 text-slate-950 shadow-glow">
               <MessageSquare size={22} />
             </div>
-            <h3 className="mt-5 text-2xl font-black text-white">Contact details</h3>
+            <PanelHeading className="mt-5">Contact details</PanelHeading>
             <p className="mt-4 text-sm leading-7 text-slate-300/85">
               Share what you want to build and I will respond with a clear next
               step. For portfolio demos, submitted messages are available in the
