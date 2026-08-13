@@ -8,7 +8,7 @@ const demo = [
   {
     title: "E-Commerce Store",
     description: "Full MERN e-commerce app with authentication, product management, cart, and checkout flow.",
-    tech: ["React", "Node", "Express", "MongoDB", "Tailwind"],
+    tech: ["React", "Next.js", "Node", "Express", "MongoDB", "MySQL", "Tailwind"],
     imageUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&auto=format&fit=crop&q=60",
     liveUrl: "",
     githubUrl: "",
@@ -18,7 +18,7 @@ const demo = [
   {
     title: "Admin Dashboard",
     description: "Analytics-style dashboard with protected routes, CRUD modules, and reusable UI components.",
-    tech: ["React", "Express", "MongoDB"],
+    tech: ["React", "Next.js", "Express", "MongoDB", "MySQL"],
     imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=60",
     featured: true,
     order: 2
@@ -26,7 +26,7 @@ const demo = [
   {
     title: "Portfolio Website",
     description: "Modern responsive portfolio with blue gradient theme, projects, and contact form connected to backend.",
-    tech: ["React", "Tailwind"],
+    tech: ["React", "Next.js", "Tailwind"],
     imageUrl: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&auto=format&fit=crop&q=60",
     featured: false,
     order: 3

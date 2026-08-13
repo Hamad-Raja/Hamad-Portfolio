@@ -3,6 +3,7 @@
 A professional MERN stack portfolio:
 - **Frontend:** React (Vite) + Tailwind + React Router
 - **Backend:** Node + Express + MongoDB (Mongoose)
+- **Displayed expertise:** React + Next.js + Node.js + Express + MongoDB + MySQL
 - **Admin Dashboard:** login + CRUD for projects + inbox for contact messages
 
 ## 1) Setup (Local)
