@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SectionTitle({ eyebrow, title, subtitle }) {
+export default function SectionTitle({ eyebrow, title, subtitle, as: Heading = "h2" }) {
   return (
     <div className="mb-10 animate-reveal">
       {eyebrow && (
@@ -8,11 +8,11 @@ export default function SectionTitle({ eyebrow, title, subtitle }) {
           {eyebrow}
         </div>
       )}
-      <h2 className="mt-4 max-w-3xl break-words text-3xl font-extrabold leading-tight text-white sm:text-4xl">
+      <Heading className="mt-4 max-w-3xl break-words text-2xl font-semibold leading-tight text-white sm:text-3xl">
         <span className="bg-[linear-gradient(110deg,#f8fafc,#ccfbf1_42%,#38bdf8_72%,#fbbf24)] bg-clip-text text-transparent">
           {title}
         </span>
-      </h2>
+      </Heading>
       <div className="mt-4 h-px w-24 rounded-full bg-gradient-to-r from-teal-300 via-sky-300 to-transparent" />
       {subtitle && (
         <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-300/80">

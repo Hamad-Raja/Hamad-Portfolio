@@ -32,9 +32,9 @@ function ProjectCard({ p, index }) {
       </div>
 
       <div className="p-6">
-        <h3 className="text-xl font-extrabold text-white transition group-hover:text-teal-100">
+        <h2 className="break-words text-lg font-semibold leading-snug text-white transition group-hover:text-teal-100 sm:text-xl">
           {p.title}
-        </h3>
+        </h2>
         <p className="mt-3 text-sm leading-7 text-slate-300/80">{p.description}</p>
 
         <div className="mt-5 flex flex-wrap gap-2">
@@ -102,6 +102,7 @@ export default function Projects() {
   return (
     <Container className="py-16">
       <SectionTitle
+        as="h1"
         eyebrow="Projects"
         title="My Work"
         subtitle="See how we turn ideas into meaningful and impactful digital experiences."

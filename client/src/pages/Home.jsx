@@ -119,10 +119,10 @@ function ProjectCard({ p }) {
 
       <div className="p-5">
         <div className="flex items-center justify-between gap-4">
-          <h3 className="text-base font-bold text-white">{p.title}</h3>
+          <h3 className="min-w-0 break-words text-base font-semibold leading-snug text-white sm:text-lg">{p.title}</h3>
           <Link
             to="/projects"
-            className="inline-flex items-center gap-1 text-sm font-semibold text-teal-200 transition hover:text-white"
+            className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-teal-200 transition hover:text-white"
           >
             View <ArrowRight size={16} />
           </Link>
@@ -164,11 +164,11 @@ export default function Home() {
               <Sparkles size={14} /> Available for MERN work
             </div>
 
-            <h1 className="mt-5 max-w-full animate-reveal break-words text-4xl font-extrabold leading-[1.03] text-white [animation-delay:80ms] sm:text-5xl xl:text-6xl">
+            <h1 className="mt-5 max-w-full animate-reveal break-words text-4xl font-semibold leading-[1.15] text-white [animation-delay:80ms] sm:text-5xl xl:text-[52px]">
               <span className="block bg-[linear-gradient(110deg,#f8fafc,#ccfbf1_45%,#7dd3fc_78%)] bg-clip-text text-transparent drop-shadow-[0_18px_55px_rgba(45,212,191,0.16)]">
                 Hammad Zahoor
               </span>
-              <span className="mt-2 block bg-[linear-gradient(110deg,#ccfbf1,#38bdf8,#fbbf24,#ccfbf1)] bg-[length:220%_100%] bg-clip-text text-transparent animate-shimmer">
+              <span className="mt-2 block bg-[linear-gradient(110deg,#ccfbf1,#38bdf8,#fbbf24,#ccfbf1)] bg-[length:220%_100%] bg-clip-text text-[28px] font-medium leading-[1.2] text-transparent animate-shimmer sm:text-4xl xl:text-[40px]">
                 Full-Stack Developer
               </span>
             </h1>
@@ -237,7 +237,7 @@ export default function Home() {
         <StackShowcase />
       </Container>
 
-      <Services />
+      <Services embedded />
 
       <Container className="pb-16">
         <SectionTitle
@@ -251,7 +251,7 @@ export default function Home() {
             {featured.slice(0, 3).map((p, index) => (
               <div
                 key={p._id}
-                className="animate-reveal"
+                className="min-w-0 animate-reveal"
                 style={{ animationDelay: `${index * 90}ms` }}
               >
                 <ProjectCard p={p} />

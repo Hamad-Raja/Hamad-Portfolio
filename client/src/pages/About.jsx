@@ -31,6 +31,7 @@ export default function About() {
   return (
     <Container className="py-16">
       <SectionTitle
+        as="h1"
         eyebrow="About"
         title="Full-stack work with a strong UI finish"
         subtitle="I focus on MERN products that combine a refined frontend experience with dependable backend architecture."
@@ -75,9 +76,9 @@ export default function About() {
                   style={{ animationDelay: `${index * 70}ms` }}
                 >
                   <Icon size={18} className="text-teal-200" />
-                  <div className="mt-3 break-words text-sm font-bold text-white">
+                  <h3 className="mt-3 break-words text-base font-semibold leading-snug text-white sm:text-lg">
                     {item.title}
-                  </div>
+                  </h3>
                   <p className="mt-2 break-words text-xs leading-5 text-slate-400">
                     {item.text}
                   </p>

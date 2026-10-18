@@ -36,6 +36,7 @@ export default function Contact() {
   return (
     <Container className="py-16">
       <SectionTitle
+        as="h1"
         eyebrow="Contact"
         title="Let's build something polished"
         subtitle="Send a project, job, or collaboration message. The form still saves directly through your existing backend."

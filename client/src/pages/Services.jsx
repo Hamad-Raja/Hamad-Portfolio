@@ -49,10 +49,11 @@ const services = [
   },
 ];
 
-export default function Services() {
+export default function Services({ embedded = false }) {
   return (
     <Container className="py-16">
       <SectionTitle
+        as={embedded ? "h2" : "h1"}
         eyebrow="Services"
         title="What I can build for you"
         subtitle="Clean interfaces, reliable backend systems, and complete MERN products built with a professional delivery mindset."
@@ -61,6 +62,7 @@ export default function Services() {
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {services.map((s, index) => {
           const Icon = s.icon;
+          const Heading = embedded ? "h3" : "h2";
           return (
             <div
               key={s.title}
@@ -76,7 +78,7 @@ export default function Services() {
                 >
                   <Icon size={22} />
                 </div>
-                <div className="text-base font-bold text-white">{s.title}</div>
+                <Heading className="text-base font-semibold leading-snug text-white sm:text-lg lg:text-xl">{s.title}</Heading>
               </div>
               <p className="relative mt-4 text-sm leading-6 text-slate-300/80">
                 {s.desc}
