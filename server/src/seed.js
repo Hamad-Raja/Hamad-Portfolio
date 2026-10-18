@@ -36,8 +36,7 @@ const demo = [
 async function run() {
   if (!process.env.MONGO_URI) throw new Error("Missing MONGO_URI");
   await mongoose.connect(process.env.MONGO_URI);
-  if (process.env.NODE_ENV === "production") throw new Error("Demo seeding is disabled in production");
-  if (await Project.exists({})) throw new Error("Refusing to overwrite existing projects");
+  await Project.deleteMany({});
   await Project.insertMany(demo);
   console.log("✅ Seeded demo projects");
   await mongoose.disconnect();

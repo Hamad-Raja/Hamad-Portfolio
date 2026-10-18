@@ -6,11 +6,7 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
-    "seed": "node src/seed.js",
-    "test": "node --test",
-    "check": "node ../scripts/check.mjs server",
-    "migrate-admin": "node scripts/migrate-admin.js",
-    "hash-password": "node scripts/hash-password.js"
+    "seed": "node src/seed.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

@@ -18,7 +18,6 @@ export default function AdminLogin() {
 
   async function login(e) {
     e.preventDefault();
-    if (loading) return;
     setErr("");
     setLoading(true);
     try {
@@ -37,19 +36,19 @@ export default function AdminLogin() {
 
   return (
     <Container className="py-16">
-      <SectionTitle as="h1"
+      <SectionTitle
         eyebrow="Admin"
         title="Dashboard Login"
-        subtitle="Sign in to manage your portfolio."
+        subtitle="Use the ADMIN_EMAIL + ADMIN_PASSWORD from server .env to login."
       />
 
       <div className="max-w-xl rounded-lg border border-white/10 bg-white/[0.055] p-7 shadow-soft backdrop-blur-2xl">
         <form onSubmit={login} className="grid gap-4">
           <div>
-            <label htmlFor="admin-email" className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+            <label className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
               Email
             </label>
-            <input id="admin-email" type="email" autoComplete="username" maxLength={120}
+            <input
               className={inputClass}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -58,10 +57,10 @@ export default function AdminLogin() {
             />
           </div>
           <div>
-            <label htmlFor="admin-password" className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+            <label className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
               Password
             </label>
-            <input id="admin-password" autoComplete="current-password"
+            <input
               type="password"
               className={inputClass}
               value={password}
@@ -72,7 +71,7 @@ export default function AdminLogin() {
           </div>
 
           {err && (
-            <div role="alert" className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+            <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
               {err}
             </div>
           )}
