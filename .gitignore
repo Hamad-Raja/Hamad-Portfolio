@@ -52,3 +52,8 @@ out/
 Thumbs.db
 ehthumbs.db
 Icon?
+# All environment modes, except documented templates
+.env.*
+!.env.example
+# Local QA artifacts
+artifacts/

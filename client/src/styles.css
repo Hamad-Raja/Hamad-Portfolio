@@ -18,3 +18,15 @@ html {
 ::selection {
   background: rgba(56, 189, 248, 0.25);
 }
+
+body { min-width: 320px; }
+img { max-width: 100%; }
+main { overflow-wrap: anywhere; }
+:focus-visible { outline: 2px solid #5eead4; outline-offset: 4px; }
+[id] { scroll-margin-top: 6rem; }
+.skip-link { position: fixed; left: 1rem; top: -5rem; z-index: 100; padding: .75rem 1rem; background: #5eead4; color: #020617; border-radius: .5rem; }
+.skip-link:focus { top: 1rem; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

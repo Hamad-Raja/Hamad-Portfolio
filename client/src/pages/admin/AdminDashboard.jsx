@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useId, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Container from "../../components/Container.jsx";
 import SectionTitle from "../../components/SectionTitle.jsx";
@@ -8,10 +8,12 @@ import { clearToken, getToken } from "../../lib/storage.js";
 import { Plus, Trash2, Pencil, LogOut, RefreshCw } from "lucide-react";
 
 function Field({ label, value, onChange, placeholder = "", type = "text" }) {
+  const id = useId();
   return (
     <div>
-      <label className="text-xs text-slate-300/80">{label}</label>
+      <label htmlFor={id} className="text-xs text-slate-300/80">{label}</label>
       <input
+        id={id}
         type={type}
         className="mt-2 w-full rounded-lg border border-white/10 bg-slate-950/45 px-4 py-3 text-sm outline-none transition focus:border-teal-300/50 focus:ring-2 focus:ring-teal-300/20"
         value={value}
@@ -23,24 +25,16 @@ function Field({ label, value, onChange, placeholder = "", type = "text" }) {
 }
 
 function Modal({ open, title, children, onClose }) {
-  if (!open) return null;
-  return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/60" onClick={onClose} />
-     <div className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-lg border border-white/10 bg-slate-950/90 p-6 shadow-soft backdrop-blur-2xl">
-        <div className="flex items-center justify-between">
-          <div className="text-base font-semibold">{title}</div>
-          <button
-            className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm transition hover:border-teal-300/50 hover:bg-teal-300/10"
-            onClick={onClose}
-          >
-            Close
-          </button>
-        </div>
-        <div className="mt-4">{children}</div>
-      </div>
-    </div>
-  );
+  const ref = useRef(null);
+  const titleId = useId();
+  useEffect(() => {
+    if (open) ref.current?.showModal();
+    else ref.current?.close();
+  }, [open]);
+  return <dialog ref={ref} aria-labelledby={titleId} onCancel={onClose} className="m-auto max-h-[90vh] w-[calc(100%_-_2rem)] max-w-2xl overflow-y-auto rounded-lg border border-white/15 bg-slate-950 p-5 text-slate-100 backdrop:bg-black/70 sm:p-6">
+    <div className="flex items-center justify-between gap-4"><h2 id={titleId} className="text-lg font-semibold">{title}</h2><Button variant="ghost" onClick={onClose}>Close</Button></div>
+    <div className="mt-4">{children}</div>
+  </dialog>;
 }
 
 export default function AdminDashboard() {
@@ -49,6 +43,7 @@ export default function AdminDashboard() {
   const [projects, setProjects] = useState([]);
   const [messages, setMessages] = useState([]);
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
 
   const [open, setOpen] = useState(false);
   const [editId, setEditId] = useState("");
@@ -73,6 +68,7 @@ export default function AdminDashboard() {
 
   async function refreshAll() {
     setBusy(true);
+    setError("");
     try {
       const [p, m] = await Promise.all([
         api.get("/api/projects"),
@@ -81,7 +77,7 @@ export default function AdminDashboard() {
       setProjects(p.data || []);
       setMessages(m.data || []);
     } catch (e) {
-      // token expired or unauthorized
+      setError("Unable to load the dashboard. Please try Refresh.");
     } finally {
       setBusy(false);
     }
@@ -124,8 +120,10 @@ export default function AdminDashboard() {
   }
 
   async function saveProject() {
-    if (!form.title.trim() || !form.description.trim()) return;
+    if (busy) return;
+    if (!form.title.trim() || !form.description.trim()) { setError("Title and description are required."); return; }
     setBusy(true);
+    setError("");
     try {
       const payload = {
         title: form.title.trim(),
@@ -143,6 +141,8 @@ export default function AdminDashboard() {
 
       setOpen(false);
       await refreshAll();
+    } catch (error) {
+      setError(error.response?.status === 400 ? error.response.data.message : "The change could not be saved. Please try again.");
     } finally {
       setBusy(false);
     }
@@ -151,9 +151,12 @@ export default function AdminDashboard() {
   async function deleteProject(id) {
     if (!confirm("Delete this project?")) return;
     setBusy(true);
+    setError("");
     try {
       await api.delete(`/api/projects/${id}`);
       await refreshAll();
+    } catch (error) {
+      setError(error.response?.status === 400 ? error.response.data.message : "The change could not be saved. Please try again.");
     } finally {
       setBusy(false);
     }
@@ -162,9 +165,12 @@ export default function AdminDashboard() {
   async function deleteMessage(id) {
     if (!confirm("Delete this message?")) return;
     setBusy(true);
+    setError("");
     try {
       await api.delete(`/api/messages/${id}`);
       await refreshAll();
+    } catch (error) {
+      setError(error.response?.status === 400 ? error.response.data.message : "The change could not be saved. Please try again.");
     } finally {
       setBusy(false);
     }
@@ -173,7 +179,7 @@ export default function AdminDashboard() {
   return (
     <Container className="py-14">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <SectionTitle eyebrow="Admin" title="Dashboard" subtitle="Manage projects and contact messages." />
+        <SectionTitle as="h1" eyebrow="Admin" title="Dashboard" subtitle="Manage projects and contact messages." />
         <div className="flex items-center gap-3">
           <Button variant="ghost" onClick={refreshAll} disabled={busy}>
             <RefreshCw size={16} /> Refresh
@@ -184,6 +190,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
+      {error && !open && <p role="alert" className="my-4 rounded-lg border border-red-400/30 p-4 text-sm text-red-200">{error}</p>}
       <div className="mt-2 flex gap-3">
         <button
           onClick={() => setTab("projects")}
@@ -239,10 +246,10 @@ export default function AdminDashboard() {
                     </div>
                   </div>
                   <div className="flex gap-2">
-                    <Button variant="ghost" onClick={() => startEdit(p)}>
+                    <Button variant="ghost" disabled={busy} onClick={() => startEdit(p)}>
                       <Pencil size={16} /> Edit
                     </Button>
-                    <Button variant="danger" onClick={() => deleteProject(p._id)}>
+                    <Button variant="danger" disabled={busy} onClick={() => deleteProject(p._id)}>
                       <Trash2 size={16} /> Delete
                     </Button>
                   </div>
@@ -270,7 +277,7 @@ export default function AdminDashboard() {
                     </div>
                     <div className="mt-3 text-sm text-slate-300/80 whitespace-pre-wrap">{m.message}</div>
                   </div>
-                  <Button variant="danger" onClick={() => deleteMessage(m._id)}>
+                  <Button variant="danger" disabled={busy} onClick={() => deleteMessage(m._id)}>
                     <Trash2 size={16} /> Delete
                   </Button>
                 </div>
@@ -288,15 +295,16 @@ export default function AdminDashboard() {
         title={editId ? "Edit Project" : "Create Project"}
         onClose={() => setOpen(false)}
       >
-        <div className="grid gap-4">
+        <form onSubmit={e => { e.preventDefault(); saveProject(); }} className="grid gap-4">
+          {error && <p role="alert" className="text-sm text-red-200">{error}</p>}
           <Field label="Title" value={form.title} onChange={(v) => setForm((s) => ({ ...s, title: v }))} />
           <div>
-            <label className="text-xs text-slate-300/80">Description</label>
-            <textarea
+            <label htmlFor="project-description" className="text-xs text-slate-300/80">Description</label>
+            <textarea id="project-description" maxLength={800}
               className="mt-2 min-h-[120px] w-full rounded-lg border border-white/10 bg-slate-950/45 px-4 py-3 text-sm outline-none transition focus:border-teal-300/50 focus:ring-2 focus:ring-teal-300/20"
               value={form.description}
               onChange={(e) => setForm((s) => ({ ...s, description: e.target.value }))}
-              placeholder="Short project summary..."
+              placeholder="Explain the problem, what the app does, and the features you built."
             />
           </div>
           <Field
@@ -329,14 +337,14 @@ export default function AdminDashboard() {
           </div>
 
           <div className="mt-2 flex gap-3">
-            <Button onClick={saveProject} disabled={busy}>
+            <Button type="submit" disabled={busy}>
               {busy ? "Saving..." : "Save"}
             </Button>
-            <Button variant="ghost" onClick={() => setOpen(false)}>
+            <Button type="button" variant="ghost" onClick={() => setOpen(false)}>
               Cancel
             </Button>
           </div>
-        </div>
+        </form>
       </Modal>
     </Container>
   );

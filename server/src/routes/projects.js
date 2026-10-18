@@ -1,46 +1,29 @@
 import { Router } from "express";
 import Project from "../models/Project.js";
 import { requireAuth } from "../middleware/auth.js";
-
+import { asyncRoute } from "../middleware/errors.js";
+import { projectPayload, validId } from "../validation.js";
 const router = Router();
-
-// Public: list projects
-router.get("/", async (req, res) => {
-  const featured = req.query.featured;
-  const q = {};
-  if (featured === "true") q.featured = true;
-
-  const items = await Project.find(q).sort({ order: 1, createdAt: -1 }).lean();
-  res.json(items);
-});
-
-// Public: single project
-router.get("/:id", async (req, res) => {
+router.get('/', asyncRoute(async (req, res) => {
+  const q = req.query.featured === 'true' ? { featured: true } : {};
+  res.json(await Project.find(q).sort({ order: 1, createdAt: -1 }).lean());
+}));
+router.get('/:id', validId, asyncRoute(async (req, res) => {
   const item = await Project.findById(req.params.id).lean();
-  if (!item) return res.status(404).json({ message: "Not found" });
+  if (!item) return res.status(404).json({ message: 'Not found' });
   res.json(item);
-});
-
-// Admin: create
-router.post("/", requireAuth, async (req, res) => {
-  const payload = req.body || {};
-  const item = await Project.create(payload);
-  res.status(201).json(item);
-});
-
-// Admin: update
-router.put("/:id", requireAuth, async (req, res) => {
-  const payload = req.body || {};
-  const item = await Project.findByIdAndUpdate(req.params.id, payload, { new: true });
-  if (!item) return res.status(404).json({ message: "Not found" });
+}));
+router.post('/', requireAuth, asyncRoute(async (req, res) => {
+  res.status(201).json(await Project.create(projectPayload(req.body)));
+}));
+router.put('/:id', requireAuth, validId, asyncRoute(async (req, res) => {
+  const item = await Project.findByIdAndUpdate(req.params.id, { $set: projectPayload(req.body) }, { new: true, runValidators: true });
+  if (!item) return res.status(404).json({ message: 'Not found' });
   res.json(item);
-});
-
-// Admin: delete
-router.delete("/:id", requireAuth, async (req, res) => {
+}));
+router.delete('/:id', requireAuth, validId, asyncRoute(async (req, res) => {
   const item = await Project.findByIdAndDelete(req.params.id);
-  if (!item) return res.status(404).json({ message: "Not found" });
+  if (!item) return res.status(404).json({ message: 'Not found' });
   res.json({ ok: true });
-});
-
+}));
 export default router;
